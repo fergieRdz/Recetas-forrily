@@ -3,8 +3,10 @@
   "project": "forkify",
   "version": "1.0.0",
   "scripts": {
+    "dev": "npm run build && npm start",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "clean": "del /s /q .parcel-cache dist 2>nul || rmdir /s /q .parcel-cache dist 2>nul || exit 0",
+    "build": "npm run clean && parcel build index.html"
   },
   "dependencies": {
     "parcel": "^2.16.3"
