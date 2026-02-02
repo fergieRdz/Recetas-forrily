@@ -1,0 +1,12 @@
+{
+  "ignore": [
+    ".parcel-cache",
+    "dist",
+    "node_modules"
+  ],
+  "watch": [
+    "src",
+    "index.html"
+  ],
+  "exec": "npm run dev"
+}
