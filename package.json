@@ -9,6 +9,7 @@
     "build": "npm run clean && parcel build index.html"
   },
   "dependencies": {
+    "fraction.js": "^5.3.4",
     "parcel": "^2.16.3"
   },
   "devDependencies": {
