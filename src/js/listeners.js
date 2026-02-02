@@ -1,4 +1,4 @@
-import { showRecipe } from './controller.js';
+import { controlRecipes } from './controller.js';
 
 const searchBtn = document.querySelector('.search__btn');
 
@@ -14,7 +14,7 @@ const recipeFromUrl = function () {
   const id = window.location.hash.slice(1);
   
   if (!id) return;
-  showRecipe(id);
+  controlRecipes(id);
 };
 
 window.addEventListener('hashchange', recipeFromUrl);
