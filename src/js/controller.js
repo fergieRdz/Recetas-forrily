@@ -11,8 +11,19 @@ export const controlRecipes = async function (id) {
   }
 }
 
+const controlSearchResults = async function (query) {
+  try {
+    await model.loadSearchResults(query);
+    console.log(model.state.search.results);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const init = function() {
   recipeView.addHandlerRender(controlRecipes);
 };
 
 init();
+
+controlSearchResults('pizza');
