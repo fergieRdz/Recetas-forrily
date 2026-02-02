@@ -3,7 +3,11 @@ import recipeView from './views/RecipeView.js';
 import './listeners.js';
 
 export const controlRecipes = async function (id) {
-  recipeView.renderSpinner();
-  await model.loadRecipe(id);
-  recipeView.render(model.state.recipe);
+  try {
+    recipeView.renderSpinner();
+    await model.loadRecipe(id);
+    recipeView.render(model.state.recipe);
+  } catch (err) {
+    console.error(err);
+  }
 }
