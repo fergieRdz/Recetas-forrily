@@ -1,17 +1,12 @@
 import icons from 'url:../img/icons.svg';
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
-const showRecipe = async function () {
-  document.querySelector(".recipe").innerHTML = "";
-  document.querySelector(".recipe").insertAdjacentHTML("afterbegin", getSpinner());
+const recipeContainer = () => document.querySelector(".recipe");
 
-  const response = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886');
+export const showRecipe = async function (id) {
+  recipeContainer().innerHTML = "";
+  recipeContainer().insertAdjacentHTML("afterbegin", getSpinner());
+
+  const response = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
   const json = await response.json();
   const data = json.data;
 
@@ -25,21 +20,14 @@ const showRecipe = async function () {
     cookTime: data.recipe.cooking_time,
     ingredients: data.recipe.ingredients,
   };
-  document.querySelector(".recipe").innerHTML = "";
-  document.querySelector(".recipe").insertAdjacentHTML(
+  recipeContainer().innerHTML = "";
+  recipeContainer().insertAdjacentHTML(
     "afterbegin",
     getRecipeTitle(recipe) + getRecipeDetails(recipe)
   );
 }
 
 // https://forkify-api.herokuapp.com/v2
-
-const searchBtn = document.querySelector('.search__btn');
-searchBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  showRecipe();
-});
-
 const getRecipeTitle = function (recipe) {
   return `<figure class="recipe__fig">
           <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" />
