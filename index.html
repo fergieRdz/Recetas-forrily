@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>forkify</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body>
+  <div class="bg">
+    <div class="app">
+
+      <!-- Header .. -->
+      <header class="topbar">
+        <div class="brand">
+          <img src="Copia de img/logo.png" class="brand__logo" alt="forkify" />
+        </div>
+
+        <form class="search" id="searchForm" autocomplete="off">
+          <input
+            class="search__input"
+            id="searchInput"
+            type="text"
+            placeholder="Search over 1,000,000 recipes..."
+          />
+          <button class="search__btn" type="submit">
+            <span>🔍 SEARCH</span>
+          </button>
+        </form>
+
+        <nav class="actions">
+          <button class="actions__btn" data-type="add" type="button">
+            <span>➕ ADD RECIPE</span>
+          </button>
+
+          <button class="actions__btn" data-type="bookmarks" type="button">
+            <span>🔖 BOOKMARKS</span>
+          </button>
+        </nav>
+      </header>
+
+      <!-- Main Layout .. -->
+      <main class="layout">
+        <aside class="left">
+          <ul class="results" id="results"></ul>
+          <div class="left__footer">
+            <small>FergieRdz</small>
+          </div>
+        </aside>
+
+        <section class="right" id="rightPanel">
+          <div class="welcome" id="welcome">
+            <div class="welcome__icon">😋</div>
+            <p class="welcome__text">
+              Start by searching for a recipe or<br />
+              an ingredient. Have fun!
+            </p>
+          </div>
+
+          <article class="recipe hidden" id="recipe"></article>
+        </section>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Modal .. -->
+  <div class="overlay hidden" id="overlay"></div>
+
+  <div class="modal hidden" id="modal">
+    <button class="modal__close" id="closeModal">&times;</button>
+
+    <div class="modal__content" data-content="add">
+      <h2>Add new recipe</h2>
+      <form id="addRecipeForm" class="add-recipe-form">
+        <div class="form-group">
+          <label for="recipeTitle">Recipe Title:</label>
+          <input type="text" id="recipeTitle" name="title" required placeholder="e.g., Pasta Carbonara">
+        </div>
+        <div class="form-group">
+          <label for="recipePublisher">Publisher:</label>
+          <input type="text" id="recipePublisher" name="publisher" required placeholder="e.g., Italian Kitchen">
+        </div>
+        <div class="form-group">
+          <label for="recipeDesc">Description:</label>
+          <textarea id="recipeDesc" name="desc" required placeholder="Describe the recipe..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="recipeImage">Image URL:</label>
+          <input type="url" id="recipeImage" name="image" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label for="recipeTags">Tags (comma separated):</label>
+          <input type="text" id="recipeTags" name="tags" placeholder="e.g., Italian, Easy, Vegetarian">
+        </div>
+        <button type="submit" class="btn">Add Recipe</button>
+      </form>
+    </div>
+
+    <div class="modal__content hidden" data-content="bookmarks">
+      <h2>Bookmarks</h2>
+      <p>No bookmarks yet. Find a nice recipe and bookmark it 🙂</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  
+
+</body>
+</html>
