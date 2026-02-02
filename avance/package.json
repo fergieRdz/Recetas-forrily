@@ -2,7 +2,7 @@
   "name": "recipes-cli",
   "version": "1.0.0",
   "type": "module",
-  "main": "src/mealsAPI.js",
+  "main":  "src/mealsAPI.js",
   "scripts": {
     "start": "node app.js",
     "testapi": "node apitest/requests.getMeal.js"
