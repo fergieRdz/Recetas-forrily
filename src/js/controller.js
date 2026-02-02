@@ -1,4 +1,5 @@
 import icons from 'url:../img/icons.svg';
+import * as model from './model.js';
 
 const recipeContainer = () => document.querySelector(".recipe");
 
@@ -6,28 +7,15 @@ export const showRecipe = async function (id) {
   recipeContainer().innerHTML = "";
   recipeContainer().insertAdjacentHTML("afterbegin", getSpinner());
 
-  const response = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
-  const json = await response.json();
-  const data = json.data;
+  await model.loadRecipe(id);
 
-  const recipe = {
-    id: data.recipe.id,
-    title: data.recipe.title,
-    publisher: data.recipe.publisher,
-    sourceUrl: data.recipe.source_url,
-    image: data.recipe.image_url,
-    servings: data.recipe.servings,
-    cookTime: data.recipe.cooking_time,
-    ingredients: data.recipe.ingredients,
-  };
   recipeContainer().innerHTML = "";
   recipeContainer().insertAdjacentHTML(
     "afterbegin",
-    getRecipeTitle(recipe) + getRecipeDetails(recipe)
+    getRecipeTitle(model.state.recipe) + getRecipeDetails(model.state.recipe)
   );
 }
 
-// https://forkify-api.herokuapp.com/v2
 const getRecipeTitle = function (recipe) {
   return `<figure class="recipe__fig">
           <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" />

@@ -4,7 +4,10 @@ const searchBtn = document.querySelector('.search__btn');
 
 searchBtn.addEventListener('click', function (e) {
   e.preventDefault();
-  showRecipe();
+  const searchTerm = document.querySelector('.search__field').value;
+  if (searchTerm) {
+    window.location.hash = searchTerm;
+  }
 });
 
 const recipeFromUrl = function () {
